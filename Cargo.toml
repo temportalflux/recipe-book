@@ -12,6 +12,8 @@ edition = "2021"
 doctest = false
 
 [dependencies]
+kdlize = { path = "../kdlize" }
+kdl = { git = "https://github.com/kdl-org/kdl-rs", features=["v1", "v1-fallback"] }
 any-range = "0.1"
 log = { version = "0.4", features = ["std"] }
 serde = "1.0"

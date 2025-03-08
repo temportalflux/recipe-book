@@ -1,0 +1,134 @@
+document {
+	info {
+		title "RecipeBook Document Schema" lang=en
+		author "Dustin Yost" {
+			link "https://github.com/temportalflux" rel=self
+		}
+		schema "https://raw.githubusercontent.com/kdl-org/kdl/refs/heads/main/examples/kdl-schema.kdl"
+	}
+	node recipe {
+		min 1
+		max 1
+		value description="The recipe's name" {
+			type string
+			min 1
+			max 1
+		}
+		children {
+			node description description="A description of the recipe" {
+				max 1
+				value {
+					type string
+					min 1
+					max 1
+				}
+			}
+			node tag description="A tag to group recipes together" {
+				value {
+					type string
+					min 1
+					max 1
+				}
+			}
+			node ingredient description="A single ingredient in the recipe" {
+				min 1
+				prop id description="An id which can be referenced by instructions to inline the name and measurement into a step. If multiple ingredients have the same id, they will be grouped together." {
+					type string
+					max 1
+				}
+				value description="The (inline) name of the ingredient. Should be consistent across multiple recipes for usage in shopping lists." {
+					type string
+					max 1
+				}
+				prop kind description="The variation of the ingredient (e.g. /whole/ milk, /all-purpose/ flour)" {
+					type string
+					max 1
+				}
+				value description="The (inline) measurement quantity" {
+					type number
+					max 1
+				}
+				value description="The (inline) measurement unit. Can be empty if the ingredient isnt measured (e.g. eggs)." {
+					type string
+					max 1
+				}
+				children {
+					node amount description="One way of measuring the ingredient" {
+						min 1
+						value description="The measurement quantity" {
+							type number
+							min 1
+							max 1
+						}
+						value description="The measurement unit. Can be empty if the ingredient isnt measured (e.g. eggs)." {
+							type string
+							max 1
+						}
+					}
+					node option description="If no inline name is provided, variations of the ingredient name can be listed as options." {
+						value {
+							type string
+							min 1
+							max 1
+						}
+						prop kind description="The variation of the ingredient (e.g. /whole/ milk, /all-purpose/ flour)" {
+							type string
+							max 1
+						}
+					}
+					node note description="Any additional notes about the ingredient" {
+						value {
+							type string
+							min 1
+							max 1
+						}
+					}
+				}
+			}
+			node instructions description="The steps to take to make the recipe" {
+				min 1
+				max 1
+				children {
+					node step description="A single step in the process" {
+						min 1
+						value description="The text/description of the step" {
+							type string
+							min 1
+							max 1
+						}
+						children {
+							node ref description="A group of ingredients to append to the text so users can follow amounts inline" {
+								value {
+									type string
+									min 1
+									max 1
+								}
+							}
+						}
+					}
+				}
+			}
+			node equipment description="Recommended tools to have on hand" {
+				value description="a tool" {
+					min 1
+					max 1
+				}
+			}
+			node source description="Where the recipe comes from, often a URL" {
+				max 1
+				value description="the source of the recipe" {
+					type string
+					min 1
+					max 1
+				}
+			}
+			node note description="Any additional notes about the recipe" {
+				value {
+					type string
+					min 1
+					max 1
+				}
+			}
+		}
+	}
+}
