@@ -1,0 +1,28 @@
+[package]
+name = "recipe-book"
+description = ""
+repository = "https://github.com/temportalflux/recipe-book"
+license = "MIT OR Apache-2.0"
+authors = ["Dustin Yost <dustin.yost.t@gmail.com>"]
+version = "0.0.1"
+edition = "2021"
+
+# yew hooks always fail doctests due to 'hook lifetime
+[lib]
+doctest = false
+
+[dependencies]
+any-range = "0.1"
+log = { version = "0.4", features = ["std"] }
+serde = "1.0"
+serde_json = "1.0"
+anyhow = "1.0"
+thiserror = "^2.0"
+enumset = "1.0"
+multimap = "0.10"
+enum-map = "2.6"
+convert_case = "0.8"
+enum_from_str = "0.1"
+enum_from_str_derive = "0.1"
+derive_more = { version = ">=1.0", features=["full"] }
+itertools = "0.14"
