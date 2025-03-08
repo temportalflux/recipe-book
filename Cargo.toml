@@ -28,3 +28,7 @@ enum_from_str = "0.1"
 enum_from_str_derive = "0.1"
 derive_more = { version = ">=1.0", features=["full"] }
 itertools = "0.14"
+url = "2.3"
+
+[dev-dependencies]
+trim-margin = "0.1.0"
